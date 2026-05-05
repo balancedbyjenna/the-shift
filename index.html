@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Shift — From Bloated + Inflamed to Lean, Calm + Regulated</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f5f2ed;
+    --warm-white: #faf9f7;
+    --stone: #c8c2b8;
+    --taupe: #9e9589;
+    --charcoal: #3a3632;
+    --dark: #1e1c1a;
+    --accent: #7c6f5e;
+    --border: #e2ddd8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--charcoal);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, rgba(124,111,94,0.18) 0%, transparent 65%);
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(72px, 14vw, 140px);
+    font-weight: 300;
+    line-height: 0.88;
+    color: var(--warm-white);
+    letter-spacing: -0.02em;
+    position: relative;
+    margin-bottom: 36px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--stone);
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--stone);
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,242,237,0.65);
+    position: relative;
+    max-width: 520px;
+    margin: 0 auto 60px;
+  }
+
+  .hero-cta {
+    position: relative;
+    display: inline-block;
+    background: var(--warm-white);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 18px 52px;
+    transition: all 0.3s ease;
+  }
+
+  .hero-cta:hover {
+    background: var(--stone);
+    color: var(--dark);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--taupe);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--taupe), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 24px; }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .container-wide {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* ── SECTION LABELS ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::before, .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── FOR YOU IF ── */
+  .for-you {
+    background: var(--cream);
+  }
+
+  .for-you h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 6vw, 58px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--dark);
+    margin-bottom: 48px;
+  }
+
+  .for-you h2 em { font-style: italic; color: var(--accent); }
+
+  .pain-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  .pain-point {
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--charcoal);
+    position: relative;
+    padding-left: 44px;
+  }
+
+  .pain-point:nth-child(odd) { border-right: 1px solid var(--border); }
+
+  .pain-point::before {
+    content: '—';
+    position: absolute;
+    left: 20px;
+    color: var(--stone);
+    font-weight: 300;
+  }
+
+  .truth-callout {
+    margin-top: 48px;
+    padding: 36px 40px;
+    border-left: 2px solid var(--accent);
+    background: white;
+  }
+
+  .truth-callout p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+
+  /* ── STORY ── */
+  .story {
+    background: var(--warm-white);
+  }
+
+  .story h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 32px;
+  }
+
+  .story p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--charcoal);
+    margin-bottom: 20px;
+    max-width: 600px;
+  }
+
+  .was-but {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin: 40px 0;
+    background: var(--border);
+  }
+
+  .was-col, .but-col {
+    background: var(--warm-white);
+    padding: 32px;
+  }
+
+  .col-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .col-items li {
+    list-style: none;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--charcoal);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .col-items li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--stone);
+  }
+
+  /* ── WHAT'S INSIDE ── */
+  .inside {
+    background: var(--dark);
+    color: var(--warm-white);
+  }
+
+  .inside .section-label { color: var(--taupe); }
+  .inside .section-label::before, .inside .section-label::after { background: rgba(255,255,255,0.12); }
+
+  .inside h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--warm-white);
+    margin-bottom: 56px;
+    max-width: 480px;
+  }
+
+  .modules {
+    display: grid;
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .module-row {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    background: var(--dark);
+    padding: 28px 32px;
+    gap: 24px;
+    align-items: start;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+
+  .module-row:hover { background: rgba(255,255,255,0.04); }
+
+  .module-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--accent);
+    line-height: 1;
+    opacity: 0.7;
+  }
+
+  .module-content h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    margin-bottom: 8px;
+  }
+
+  .module-content p {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(245,242,237,0.55);
+    line-height: 1.6;
+  }
+
+  /* ── BODY TYPES ── */
+  .body-types {
+    background: var(--cream);
+  }
+
+  .body-types h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .body-types .sub {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--taupe);
+    margin-bottom: 48px;
+  }
+
+  .types-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .type-card {
+    background: var(--warm-white);
+    padding: 32px 28px;
+  }
+
+  .type-name {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .type-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--dark);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .type-card ul {
+    list-style: none;
+  }
+
+  .type-card li {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--charcoal);
+    padding: 5px 0;
+    padding-left: 14px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .type-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    font-size: 11px;
+    color: var(--stone);
+    top: 6px;
+  }
+
+  /* ── PRICE / CTA ── */
+  .price-section {
+    background: var(--warm-white);
+    text-align: center;
+    padding: 100px 24px;
+  }
+
+  .price-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+
+  .price-section h2 em { font-style: italic; color: var(--accent); }
+
+  .price-section .tagline {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--taupe);
+    margin-bottom: 56px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .price-card {
+    background: var(--dark);
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 56px 48px;
+    text-align: center;
+    position: relative;
+  }
+
+  .price-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--warm-white);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 24px;
+    white-space: nowrap;
+  }
+
+  .price-guide-name {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 24px;
+  }
+
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .price-amount sup {
+    font-size: 32px;
+    vertical-align: top;
+    margin-top: 16px;
+    display: inline-block;
+  }
+
+  .price-note {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--taupe);
+    margin-bottom: 40px;
+  }
+
+  .price-includes {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 32px;
+  }
+
+  .price-includes li {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(245,242,237,0.75);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .price-includes li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--stone);
+    font-size: 11px;
+  }
+
+  .buy-btn {
+    display: block;
+    width: 100%;
+    background: var(--warm-white);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px 32px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: none;
+  }
+
+  .buy-btn:hover {
+    background: var(--stone);
+  }
+
+  .secure-note {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--taupe);
+    margin-top: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FINAL CTA BANNER ── */
+  .final-banner {
+    background: var(--cream);
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .final-banner h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--dark);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .final-banner p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--taupe);
+    margin-bottom: 40px;
+  }
+
+  .final-btn {
+    display: inline-block;
+    background: var(--dark);
+    color: var(--warm-white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 18px 52px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .final-btn:hover { background: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--taupe);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 48px;
+    height: 1px;
+    background: var(--stone);
+    margin: 40px auto;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .pain-points { grid-template-columns: 1fr; }
+    .pain-point:nth-child(odd) { border-right: none; }
+    .was-but { grid-template-columns: 1fr; }
+    .types-grid { grid-template-columns: 1fr; }
+    .price-card { padding: 48px 28px; }
+    .module-row { grid-template-columns: 40px 1fr; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">A digital guide for women who are tired of feeling stuck</p>
+  <h1>The<br><em>Shift</em></h1>
+  <p class="hero-sub">From Bloated + Inflamed → Lean, Calm + Regulated</p>
+  <p class="hero-tagline">Why your body feels stuck — even when you're trying — and how to fix it</p>
+  <a href="https://buy.stripe.com/4gMeVc3XbduQbxD0Wve7m01" class="hero-cta">Get Instant Access</a>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- FOR YOU IF -->
+<section class="for-you">
+  <div class="container">
+    <div class="section-label">This is for you if</div>
+    <h2>You eat <em>"healthy"</em><br>and still feel like<br>your body isn't responding.</h2>
+
+    <div class="pain-points">
+      <div class="pain-point">You eat "healthy" but still feel puffy</div>
+      <div class="pain-point">You think about your body all the time</div>
+      <div class="pain-point">You rely on caffeine just to function</div>
+      <div class="pain-point">You work out but still feel inflamed or stuck</div>
+      <div class="pain-point">You know what to do, but can't stay consistent</div>
+      <div class="pain-point">Your body feels like it isn't responding anymore</div>
+    </div>
+
+    <div class="truth-callout">
+      <p>This is not a discipline problem. It's a body support problem.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story">
+  <div class="container">
+    <div class="section-label">The story behind this</div>
+    <h2>I didn't need more discipline. I needed a different approach.</h2>
+
+    <div class="was-but">
+      <div class="was-col">
+        <p class="col-label">I was</p>
+        <ul class="col-items">
+          <li>eating "clean"</li>
+          <li>working out consistently</li>
+          <li>trying to stay on track</li>
+        </ul>
+      </div>
+      <div class="but-col">
+        <p class="col-label">But I still felt</p>
+        <ul class="col-items">
+          <li>inflamed</li>
+          <li>exhausted</li>
+          <li>stuck</li>
+        </ul>
+      </div>
+    </div>
+
+    <p>What changed everything: I stopped trying to do more — and learned how to support my body properly. This is what became <strong>The Balance Method</strong>.</p>
+    <p style="margin-top:16px;">Your body isn't broken. It's responding to how it's being supported.</p>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="inside">
+  <div class="container">
+    <div class="section-label">What's inside</div>
+    <h2>Four shifts that change everything.</h2>
+
+    <div class="modules">
+      <div class="module-row">
+        <div class="module-num">01</div>
+        <div class="module-content">
+          <h3>Stabilize Your Blood Sugar</h3>
+          <p>The Blood Sugar Shift — if your blood sugar is unstable, nothing else works. Learn why most women make this worse by eating less, and exactly what to do first.</p>
+        </div>
+      </div>
+      <div class="module-row">
+        <div class="module-num">02</div>
+        <div class="module-content">
+          <h3>Calm the Stress Body</h3>
+          <p>The Stress Shift — your body cannot release what it doesn't feel safe enough to let go of. Even if you don't feel mentally stressed, your body might be under stress from overtraining, under eating, or poor sleep.</p>
+        </div>
+      </div>
+      <div class="module-row">
+        <div class="module-num">03</div>
+        <div class="module-content">
+          <h3>Support Your Digestion</h3>
+          <p>The Gut Shift — bloating is not just about what you eat. It's about how stressed, rushed, and unsupported your digestion is. Simple changes, real results.</p>
+        </div>
+      </div>
+      <div class="module-row">
+        <div class="module-num">04</div>
+        <div class="module-content">
+          <h3>Move Smarter</h3>
+          <p>The Movement Shift — for most women, it's doing too much that keeps them stuck. More workouts ≠ better results. Learn what movement actually supports your body.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px; padding:32px; border:1px solid rgba(255,255,255,0.1);">
+      <p style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--taupe); margin-bottom:20px;">Also included</p>
+      <p style="font-size:14px; font-weight:300; color:rgba(245,242,237,0.7); line-height:1.8;">
+        Hormone-supportive meal examples · Savory breakfast, lunch, and dinner ideas · Snack guide · Your 7-Day Balance Reset plan (days 1–3: regulate, days 4–7: support + build) · Body type guide (The Stressed Body, The Bloated Body, The Exhausted Body)
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- BODY TYPES -->
+<section class="body-types">
+  <div class="container-wide">
+    <div class="section-label">Find your starting point</div>
+    <h2>Which body type<br>are you right now?</h2>
+    <p class="sub">The guide shows you exactly where to start based on how you feel.</p>
+
+    <div class="types-grid">
+      <div class="type-card">
+        <p class="type-name">Type 01</p>
+        <h4>The Stressed Body</h4>
+        <ul>
+          <li>Always thinking about food</li>
+          <li>Overwhelmed or anxious</li>
+          <li>Holds weight in stomach</li>
+          <li>Focus: stress + cortisol</li>
+        </ul>
+      </div>
+      <div class="type-card">
+        <p class="type-name">Type 02</p>
+        <h4>The Bloated Body</h4>
+        <ul>
+          <li>Constant bloating</li>
+          <li>Feels puffy after eating</li>
+          <li>Digestion feels off</li>
+          <li>Focus: gut + digestion</li>
+        </ul>
+      </div>
+      <div class="type-card">
+        <p class="type-name">Type 03</p>
+        <h4>The Exhausted Body</h4>
+        <ul>
+          <li>Low energy always</li>
+          <li>Relies on caffeine</li>
+          <li>Crashes throughout the day</li>
+          <li>Focus: blood sugar + recovery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE / GET IT -->
+<section class="price-section" id="get-it">
+  <div class="container">
+    <h2>Your body is ready<br>to <em>respond.</em></h2>
+    <p class="tagline">Do less. Be consistent. Let your body settle.</p>
+
+    <div class="price-card">
+      <div class="price-badge">Instant Digital Access</div>
+      <p class="price-guide-name">The Shift — Full Guide</p>
+      <div class="price-amount"><sup>$</sup>29</div>
+      <p class="price-note">One-time payment · Instant download</p>
+
+      <ul class="price-includes">
+        <li>The Balance Method (all 4 shifts)</li>
+        <li>3 Body Type breakdown + where to start</li>
+        <li>Hormone-supportive meal examples</li>
+        <li>Breakfast, lunch, dinner + snack ideas</li>
+        <li>Your 7-Day Balance Reset plan</li>
+        <li>17-page digital guide (PDF)</li>
+      </ul>
+
+      <a href="https://buy.stripe.com/4gMeVc3XbduQbxD0Wve7m01" class="buy-btn">Yes — I'm Ready to Shift</a>
+
+      <p class="secure-note">Secure checkout via Stripe · Instant access after purchase</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL BANNER -->
+<section class="final-banner">
+  <div class="container">
+    <h2>"It's not lack of effort.<br>It's lack of direction."</h2>
+    <p>You've been trying. Now let's get your body actually working with you.</p>
+    <a href="https://buy.stripe.com/4gMeVc3XbduQbxD0Wve7m01" class="final-btn">Get The Shift — $29</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 · The Shift Digital Guide · All rights reserved</p>
+</footer>
+
+</body>
+</html>
