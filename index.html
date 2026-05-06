@@ -3,845 +3,751 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Shift — From Bloated + Inflamed to Lean, Calm + Regulated</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>The Shift — Stop Being Bloated</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --cream: #f5f2ed;
-    --warm-white: #faf9f7;
-    --stone: #c8c2b8;
-    --taupe: #9e9589;
-    --charcoal: #3a3632;
-    --dark: #1e1c1a;
-    --accent: #7c6f5e;
-    --border: #e2ddd8;
+    --cream: #fafaf8;
+    --dark: #1c1c1a;
+    --accent: #a8a89a;
+    --text: #2a2a28;
+    --muted: #8a8a82;
+    --light: #f2f2ef;
+    --border: rgba(0,0,0,0.08);
   }
 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
   body {
+    background: var(--cream);
+    color: var(--text);
     font-family: 'DM Sans', sans-serif;
-    background: var(--warm-white);
-    color: var(--charcoal);
-    font-size: 16px;
+    font-weight: 300;
     line-height: 1.7;
+    overflow-x: hidden;
   }
 
-  /* ── HERO ── */
-  .hero {
+  /* STICKY BAR */
+  .sticky-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
     background: var(--dark);
+    padding: 12px 24px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .sticky-bar span {
+    font-size: 12px;
+    color: rgba(250,250,248,0.6);
+    letter-spacing: 0.04em;
+  }
+
+  .sticky-bar a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(250,250,248,0.35);
+    padding-bottom: 1px;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  /* HERO */
+  .hero {
     min-height: 100vh;
+    background: var(--dark);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 80px 24px;
+    padding: 110px 24px 80px;
     position: relative;
     overflow: hidden;
   }
 
-  .hero::before {
+  .hero::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 60% 40%, rgba(124,111,94,0.18) 0%, transparent 65%);
+    background: radial-gradient(ellipse at 50% 55%, rgba(168,168,154,0.08) 0%, transparent 65%);
+    pointer-events: none;
   }
 
-  .hero-eyebrow {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.22em;
+  .hero-tag {
+    font-size: 10px;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: var(--stone);
-    margin-bottom: 32px;
-    position: relative;
+    color: var(--accent);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.1s;
   }
 
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(72px, 14vw, 140px);
+    font-size: clamp(56px, 12vw, 116px);
     font-weight: 300;
-    line-height: 0.88;
-    color: var(--warm-white);
+    color: var(--cream);
+    line-height: 0.92;
+    margin-bottom: 12px;
     letter-spacing: -0.02em;
-    position: relative;
-    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.3s;
   }
 
-  .hero h1 em {
-    font-style: italic;
-    color: var(--stone);
-  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
 
-  .hero-sub {
-    font-size: 13px;
+  .hero-hook {
+    font-size: clamp(15px, 2.2vw, 18px);
+    color: rgba(250,250,248,0.5);
+    max-width: 460px;
+    margin: 32px auto 0;
+    line-height: 1.85;
     font-weight: 300;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--stone);
-    position: relative;
-    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.5s;
   }
 
-  .hero-tagline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(16px, 2.5vw, 22px);
-    font-weight: 300;
-    font-style: italic;
-    color: rgba(245,242,237,0.65);
-    position: relative;
-    max-width: 520px;
-    margin: 0 auto 60px;
+  .hero-hook strong {
+    color: rgba(250,250,248,0.9);
+    font-weight: 400;
   }
 
-  .hero-cta {
-    position: relative;
-    display: inline-block;
-    background: var(--warm-white);
-    color: var(--dark);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 18px 52px;
-    transition: all 0.3s ease;
-  }
-
-  .hero-cta:hover {
-    background: var(--stone);
-    color: var(--dark);
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 36px;
-    left: 50%;
-    transform: translateX(-50%);
+  .hero-cta-wrap {
+    margin-top: 56px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    color: var(--taupe);
-    font-size: 10px;
+    gap: 14px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards 0.7s;
+  }
+
+  .btn-hero {
+    display: inline-block;
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
     letter-spacing: 0.15em;
     text-transform: uppercase;
+    text-decoration: none;
+    padding: 20px 56px;
+    transition: all 0.25s ease;
   }
 
-  .scroll-line {
-    width: 1px;
-    height: 48px;
-    background: linear-gradient(to bottom, var(--taupe), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
+  .btn-hero:hover { background: var(--accent); transform: translateY(-2px); }
+
+  .hero-micro {
+    font-size: 11px;
+    color: rgba(250,250,248,0.28);
+    letter-spacing: 0.1em;
   }
 
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-  }
+  /* SECTIONS */
+  .truth { background: var(--cream); padding: 96px 24px; text-align: center; }
+  .truth-inner { max-width: 700px; margin: 0 auto; }
 
-  /* ── SECTIONS ── */
-  section { padding: 80px 24px; }
-
-  .container {
-    max-width: 680px;
-    margin: 0 auto;
-  }
-
-  .container-wide {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  /* ── SECTION LABELS ── */
-  .section-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--taupe);
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .section-label::before, .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  /* ── FOR YOU IF ── */
-  .for-you {
-    background: var(--cream);
-  }
-
-  .for-you h2 {
+  .truth h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(38px, 6vw, 58px);
+    font-size: clamp(28px, 5vw, 50px);
     font-weight: 300;
-    line-height: 1.1;
-    color: var(--dark);
-    margin-bottom: 48px;
+    line-height: 1.25;
+    margin-bottom: 36px;
   }
 
-  .for-you h2 em { font-style: italic; color: var(--accent); }
+  .truth h2 em { font-style: italic; color: var(--muted); }
 
-  .pain-points {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: 1px solid var(--border);
+  .truth-body {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 2;
+    margin-bottom: 20px;
   }
 
-  .pain-point {
-    padding: 24px 28px;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--charcoal);
-    position: relative;
-    padding-left: 44px;
-  }
-
-  .pain-point:nth-child(odd) { border-right: 1px solid var(--border); }
-
-  .pain-point::before {
-    content: '—';
-    position: absolute;
-    left: 20px;
-    color: var(--stone);
-    font-weight: 300;
-  }
+  .truth-body strong { color: var(--text); font-weight: 400; }
 
   .truth-callout {
-    margin-top: 48px;
+    margin-top: 56px;
     padding: 36px 40px;
-    border-left: 2px solid var(--accent);
-    background: white;
+    background: var(--light);
+    border-left: 2px solid var(--text);
+    text-align: left;
   }
 
   .truth-callout p {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(20px, 3vw, 26px);
+    font-size: clamp(19px, 2.8vw, 27px);
     font-weight: 300;
-    font-style: italic;
-    color: var(--dark);
-    line-height: 1.5;
+    line-height: 1.55;
   }
 
-  /* ── STORY ── */
-  .story {
-    background: var(--warm-white);
-  }
+  .truth-callout p em { font-style: italic; }
 
-  .story h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 5vw, 48px);
-    font-weight: 300;
-    line-height: 1.2;
-    color: var(--dark);
+  /* SYMPTOMS */
+  .symptoms { background: var(--dark); padding: 96px 24px; }
+  .symptoms-inner { max-width: 760px; margin: 0 auto; text-align: center; }
+
+  .label-sm {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
     margin-bottom: 32px;
   }
 
-  .story p {
-    font-size: 15px;
-    font-weight: 300;
-    color: var(--charcoal);
-    margin-bottom: 20px;
-    max-width: 600px;
-  }
-
-  .was-but {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    margin: 40px 0;
-    background: var(--border);
-  }
-
-  .was-col, .but-col {
-    background: var(--warm-white);
-    padding: 32px;
-  }
-
-  .col-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--taupe);
-    margin-bottom: 20px;
-    font-weight: 500;
-  }
-
-  .col-items li {
-    list-style: none;
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--charcoal);
-    padding: 6px 0;
-    border-bottom: 1px solid var(--border);
-    padding-left: 16px;
-    position: relative;
-  }
-
-  .col-items li::before {
-    content: '·';
-    position: absolute;
-    left: 0;
-    color: var(--stone);
-  }
-
-  /* ── WHAT'S INSIDE ── */
-  .inside {
-    background: var(--dark);
-    color: var(--warm-white);
-  }
-
-  .inside .section-label { color: var(--taupe); }
-  .inside .section-label::before, .inside .section-label::after { background: rgba(255,255,255,0.12); }
-
-  .inside h2 {
+  .symptoms h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 54px);
+    font-size: clamp(28px, 5vw, 50px);
     font-weight: 300;
-    line-height: 1.1;
-    color: var(--warm-white);
-    margin-bottom: 56px;
-    max-width: 480px;
-  }
-
-  .modules {
-    display: grid;
-    gap: 2px;
-    background: rgba(255,255,255,0.06);
-  }
-
-  .module-row {
-    display: grid;
-    grid-template-columns: 56px 1fr;
-    background: var(--dark);
-    padding: 28px 32px;
-    gap: 24px;
-    align-items: start;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    transition: background 0.2s;
-  }
-
-  .module-row:hover { background: rgba(255,255,255,0.04); }
-
-  .module-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 36px;
-    font-weight: 300;
-    color: var(--accent);
-    line-height: 1;
-    opacity: 0.7;
-  }
-
-  .module-content h3 {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--warm-white);
-    margin-bottom: 8px;
-  }
-
-  .module-content p {
-    font-size: 13px;
-    font-weight: 300;
-    color: rgba(245,242,237,0.55);
-    line-height: 1.6;
-  }
-
-  /* ── BODY TYPES ── */
-  .body-types {
-    background: var(--cream);
-  }
-
-  .body-types h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 52px);
-    font-weight: 300;
-    color: var(--dark);
-    margin-bottom: 16px;
-    line-height: 1.1;
-  }
-
-  .body-types .sub {
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--taupe);
-    margin-bottom: 48px;
-  }
-
-  .types-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border);
-  }
-
-  .type-card {
-    background: var(--warm-white);
-    padding: 32px 28px;
-  }
-
-  .type-name {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
-
-  .type-card h4 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 400;
-    color: var(--dark);
-    margin-bottom: 20px;
+    color: var(--cream);
+    margin-bottom: 52px;
     line-height: 1.2;
   }
 
-  .type-card ul {
-    list-style: none;
+  .symptoms h2 em { font-style: italic; color: var(--accent); }
+
+  .sym-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid rgba(250,250,248,0.07);
+    text-align: left;
   }
 
-  .type-card li {
-    font-size: 13px;
+  .sym-item {
+    padding: 22px 26px;
+    border-bottom: 1px solid rgba(250,250,248,0.06);
+    border-right: 1px solid rgba(250,250,248,0.06);
+    font-size: 14px;
+    color: rgba(250,250,248,0.6);
+    line-height: 1.65;
+  }
+
+  .sym-item:nth-child(even) { border-right: none; }
+  .sym-item::before { content: '— '; color: var(--accent); }
+
+  .symptoms-close {
+    margin-top: 52px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(19px, 3vw, 28px);
+    font-style: italic;
+    color: rgba(250,250,248,0.45);
+    line-height: 1.5;
+  }
+
+  .symptoms-close strong {
+    color: var(--cream);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  /* PROBLEM */
+  .problem { background: var(--cream); padding: 96px 24px; text-align: center; }
+  .problem-inner { max-width: 680px; margin: 0 auto; }
+
+  .problem h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 50px);
     font-weight: 300;
-    color: var(--charcoal);
-    padding: 5px 0;
-    padding-left: 14px;
-    position: relative;
+    line-height: 1.25;
+    margin-bottom: 40px;
+  }
+
+  .problem h2 em { font-style: italic; }
+
+  .problem p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 2;
+    margin-bottom: 20px;
+  }
+
+  .problem p strong { color: var(--text); font-weight: 400; }
+
+  .problem-divider {
+    width: 40px; height: 1px;
+    background: var(--accent);
+    margin: 48px auto;
+  }
+
+  .problem-shift {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(21px, 3.5vw, 36px);
+    font-weight: 300;
+    line-height: 1.45;
+  }
+
+  .problem-shift em { font-style: italic; color: var(--muted); }
+
+  /* CHANGES */
+  .changes { background: var(--light); padding: 96px 24px; text-align: center; }
+  .changes-inner { max-width: 680px; margin: 0 auto; }
+
+  .changes h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 50px);
+    font-weight: 300;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .changes h2 em { font-style: italic; color: var(--muted); }
+
+  .changes-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 52px;
+    letter-spacing: 0.04em;
+  }
+
+  .changes-items {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 48px;
+  }
+
+  .changes-items li {
+    font-size: 17px;
+    color: var(--text);
+    padding: 19px 0;
     border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    line-height: 1.5;
   }
 
-  .type-card li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    font-size: 11px;
-    color: var(--stone);
-    top: 6px;
+  .changes-items li .arr { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+
+  .changes-punch {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3vw, 30px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.45;
+    padding: 40px 36px;
+    background: var(--dark);
   }
 
-  /* ── PRICE / CTA ── */
+  /* INSIDE */
+  .inside { background: var(--cream); padding: 96px 24px; }
+  .inside-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+
+  .inside h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 5vw, 50px);
+    font-weight: 300;
+    margin-bottom: 52px;
+    line-height: 1.2;
+  }
+
+  .inside h2 em { font-style: italic; color: var(--muted); }
+
+  .inside-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--border);
+    margin-bottom: 2px;
+    text-align: left;
+  }
+
+  .inside-card { background: var(--cream); padding: 34px 30px; }
+
+  .inside-card .num {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+
+  .inside-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .inside-card p { font-size: 13px; color: var(--muted); line-height: 1.85; }
+
+  .also-box {
+    background: var(--light);
+    padding: 32px 36px;
+    text-align: left;
+  }
+
+  .also-box .lbl {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .also-box p { font-size: 14px; color: var(--muted); line-height: 2.1; }
+
+  /* PRICE */
   .price-section {
-    background: var(--warm-white);
+    background: var(--dark);
+    padding: 96px 24px;
     text-align: center;
-    padding: 100px 24px;
   }
 
   .price-section h2 {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 54px);
+    font-size: clamp(28px, 5vw, 50px);
     font-weight: 300;
-    color: var(--dark);
-    margin-bottom: 16px;
-    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 52px;
+    line-height: 1.2;
   }
 
   .price-section h2 em { font-style: italic; color: var(--accent); }
 
-  .price-section .tagline {
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--taupe);
-    margin-bottom: 56px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .price-card {
-    background: var(--dark);
-    max-width: 440px;
+  .price-box {
+    max-width: 520px;
     margin: 0 auto;
-    padding: 56px 48px;
-    text-align: center;
-    position: relative;
+    background: var(--cream);
+    padding: 52px 44px;
   }
 
-  .price-badge {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent);
-    color: var(--warm-white);
-    font-size: 10px;
+  .price-top {
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .price-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 88px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--dark);
+  }
+
+  .price-num sup { font-size: 36px; vertical-align: super; }
+
+  .price-sub {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  .price-list { list-style: none; text-align: left; margin-bottom: 36px; }
+
+  .price-list li {
+    font-size: 14px;
+    color: var(--text);
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 14px;
+    line-height: 1.5;
+  }
+
+  .price-list li::before { content: '✓'; color: var(--text); flex-shrink: 0; font-weight: 500; }
+
+  .btn-buy {
+    display: block;
+    width: 100%;
+    background: var(--dark);
+    color: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    padding: 6px 24px;
-    white-space: nowrap;
+    text-decoration: none;
+    padding: 22px 48px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+    margin-bottom: 14px;
   }
 
-  .price-guide-name {
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--stone);
+  .btn-buy:hover { background: #333330; transform: translateY(-1px); }
+  .secure { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+
+  /* CLOSE */
+  .close-section { background: var(--cream); padding: 96px 24px; text-align: center; }
+  .close-inner { max-width: 600px; margin: 0 auto; }
+
+  .close-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 5vw, 46px);
+    font-weight: 300;
+    line-height: 1.3;
     margin-bottom: 24px;
   }
 
-  .price-amount {
+  .close-section h2 em { font-style: italic; color: var(--muted); }
+
+  .close-section p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .close-section p strong { color: var(--text); font-weight: 400; }
+
+  .close-facts {
+    display: flex;
+    justify-content: center;
+    margin: 48px 0;
+    border: 1px solid var(--border);
+  }
+
+  .close-fact {
+    flex: 1;
+    padding: 28px 16px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .close-fact:last-child { border-right: none; }
+
+  .close-fact .big {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 80px;
+    font-size: 44px;
     font-weight: 300;
-    color: var(--warm-white);
     line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .price-amount sup {
-    font-size: 32px;
-    vertical-align: top;
-    margin-top: 16px;
-    display: inline-block;
-  }
-
-  .price-note {
-    font-size: 12px;
-    font-weight: 300;
-    color: var(--taupe);
-    margin-bottom: 40px;
-  }
-
-  .price-includes {
-    list-style: none;
-    text-align: left;
-    margin-bottom: 40px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 32px;
-  }
-
-  .price-includes li {
-    font-size: 13px;
-    font-weight: 300;
-    color: rgba(245,242,237,0.75);
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    padding-left: 20px;
-    position: relative;
-  }
-
-  .price-includes li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--stone);
-    font-size: 11px;
-  }
-
-  .buy-btn {
     display: block;
-    width: 100%;
-    background: var(--warm-white);
-    color: var(--dark);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
+    margin-bottom: 6px;
+  }
+
+  .close-fact .sm {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    text-align: center;
-    padding: 20px 32px;
-    text-decoration: none;
-    transition: all 0.25s ease;
-    cursor: pointer;
-    border: none;
   }
 
-  .buy-btn:hover {
-    background: var(--stone);
-  }
-
-  .secure-note {
-    font-size: 11px;
-    font-weight: 300;
-    color: var(--taupe);
-    margin-top: 16px;
-    letter-spacing: 0.05em;
-  }
-
-  /* ── FINAL CTA BANNER ── */
-  .final-banner {
-    background: var(--cream);
-    padding: 80px 24px;
-    text-align: center;
-  }
-
-  .final-banner h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 300;
-    font-style: italic;
-    color: var(--dark);
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-
-  .final-banner p {
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--taupe);
-    margin-bottom: 40px;
-  }
-
-  .final-btn {
+  .btn-close {
     display: inline-block;
     background: var(--dark);
-    color: var(--warm-white);
+    color: var(--cream);
     font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    padding: 18px 52px;
     text-decoration: none;
+    padding: 20px 56px;
     transition: all 0.25s ease;
   }
 
-  .final-btn:hover { background: var(--accent); }
+  .btn-close:hover { background: #333330; transform: translateY(-2px); }
 
-  /* ── FOOTER ── */
+  .final-note {
+    margin-top: 18px;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
   footer {
     background: var(--dark);
-    padding: 32px 24px;
+    padding: 28px 24px;
     text-align: center;
+    border-top: 1px solid rgba(250,250,248,0.04);
   }
 
-  footer p {
-    font-size: 11px;
-    font-weight: 300;
-    color: var(--taupe);
-    letter-spacing: 0.08em;
+  footer p { font-size: 11px; color: rgba(250,250,248,0.18); letter-spacing: 0.1em; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── DIVIDER ── */
-  .divider {
-    width: 48px;
-    height: 1px;
-    background: var(--stone);
-    margin: 40px auto;
-  }
-
-  /* ── RESPONSIVE ── */
   @media (max-width: 600px) {
-    .pain-points { grid-template-columns: 1fr; }
-    .pain-point:nth-child(odd) { border-right: none; }
-    .was-but { grid-template-columns: 1fr; }
-    .types-grid { grid-template-columns: 1fr; }
-    .price-card { padding: 48px 28px; }
-    .module-row { grid-template-columns: 40px 1fr; padding: 20px; }
+    .inside-grid { grid-template-columns: 1fr; }
+    .sym-list { grid-template-columns: 1fr; }
+    .sym-item { border-right: none !important; }
+    .close-facts { flex-direction: column; }
+    .close-fact { border-right: none; border-bottom: 1px solid var(--border); }
+    .close-fact:last-child { border-bottom: none; }
+    .price-box { padding: 36px 24px; }
+    .truth-callout { padding: 24px; }
+    .sticky-bar { flex-direction: column; gap: 6px; padding: 10px 16px; }
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
+<div class="sticky-bar">
+  <span>most girls feel different within 3 days —</span>
+  <a href="#get-access">get The Shift for $29 →</a>
+</div>
+
 <section class="hero">
-  <p class="hero-eyebrow">A digital guide for women who are tired of feeling stuck</p>
-  <h1>The<br><em>Shift</em></h1>
-  <p class="hero-sub">From Bloated + Inflamed → Lean, Calm + Regulated</p>
-  <p class="hero-tagline">Why your body feels stuck — even when you're trying — and how to fix it</p>
-  <a href="https://buy.stripe.com/4gMeVc3XbduQbxD0Wve7m01" class="hero-cta">Get Instant Access</a>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    scroll
+  <p class="hero-tag">balancedbyjenna · 7-day guide for women</p>
+  <h1>The <em>Shift</em></h1>
+  <p class="hero-hook">
+    you're not fat. you're not broken. you're not lazy.<br>
+    <strong>your body is inflamed — and nobody told you why.</strong>
+  </p>
+  <div class="hero-cta-wrap">
+    <a href="#get-access" class="btn-hero">I'm ready to feel like myself →</a>
+    <span class="hero-micro">$29 · instant access · start today</span>
   </div>
 </section>
 
-<!-- FOR YOU IF -->
-<section class="for-you">
-  <div class="container">
-    <div class="section-label">This is for you if</div>
-    <h2>You eat <em>"healthy"</em><br>and still feel like<br>your body isn't responding.</h2>
-
-    <div class="pain-points">
-      <div class="pain-point">You eat "healthy" but still feel puffy</div>
-      <div class="pain-point">You think about your body all the time</div>
-      <div class="pain-point">You rely on caffeine just to function</div>
-      <div class="pain-point">You work out but still feel inflamed or stuck</div>
-      <div class="pain-point">You know what to do, but can't stay consistent</div>
-      <div class="pain-point">Your body feels like it isn't responding anymore</div>
-    </div>
-
+<section class="truth">
+  <div class="truth-inner">
+    <h2>you've been doing <em>everything right.</em><br>so why does your body feel so wrong?</h2>
+    <p class="truth-body">you eat clean. you try to work out. you drink your water. and you still wake up every morning with a puffy face, a bloated stomach, and zero energy. <strong>and the worst part? you don't even know why.</strong></p>
+    <p class="truth-body">so you eat less. you push harder. and your body just holds on tighter. you feel worse. and you start to wonder — <strong>is this just how I am now?</strong></p>
     <div class="truth-callout">
-      <p>This is not a discipline problem. It's a body support problem.</p>
+      <p>no. this is not just how you are. <em>this is your body in a stress and inflammatory state — and it has a very specific fix that most people never talk about.</em></p>
     </div>
   </div>
 </section>
 
-<!-- STORY -->
-<section class="story">
-  <div class="container">
-    <div class="section-label">The story behind this</div>
-    <h2>I didn't need more discipline. I needed a different approach.</h2>
-
-    <div class="was-but">
-      <div class="was-col">
-        <p class="col-label">I was</p>
-        <ul class="col-items">
-          <li>eating "clean"</li>
-          <li>working out consistently</li>
-          <li>trying to stay on track</li>
-        </ul>
-      </div>
-      <div class="but-col">
-        <p class="col-label">But I still felt</p>
-        <ul class="col-items">
-          <li>inflamed</li>
-          <li>exhausted</li>
-          <li>stuck</li>
-        </ul>
-      </div>
+<section class="symptoms">
+  <div class="symptoms-inner">
+    <span class="label-sm">if this is you — keep reading</span>
+    <h2>does any of this sound <em>familiar?</em></h2>
+    <div class="sym-list">
+      <div class="sym-item">you wake up puffy even when you barely ate the night before</div>
+      <div class="sym-item">your stomach bloats from water, food — basically everything</div>
+      <div class="sym-item">you work out but still feel heavy and inflamed</div>
+      <div class="sym-item">you rely on caffeine just to get through the day</div>
+      <div class="sym-item">your face looks rounder and puffier than it used to</div>
+      <div class="sym-item">you feel completely disconnected from your body</div>
+      <div class="sym-item">you've tried everything and nothing has actually worked</div>
+      <div class="sym-item">you know something is off but can't figure out what</div>
     </div>
-
-    <p>What changed everything: I stopped trying to do more — and learned how to support my body properly. This is what became <strong>The Balance Method</strong>.</p>
-    <p style="margin-top:16px;">Your body isn't broken. It's responding to how it's being supported.</p>
+    <p class="symptoms-close">if you checked even two of these — <strong>this guide will change things for you.</strong></p>
   </div>
 </section>
 
-<!-- WHAT'S INSIDE -->
+<section class="problem">
+  <div class="problem-inner">
+    <h2>here's what nobody<br>is <em>telling you</em></h2>
+    <p>your body isn't the problem. <strong>the advice you've been given is.</strong> eating less and working out more when your body is already overwhelmed is like pressing the gas on a car with no oil.</p>
+    <p>when your body is in a stress state — it <strong>cannot process food properly. it holds water. it inflames. it puffs up.</strong> and every time you restrict or over-exercise, you signal to your body that it needs to hold on even harder.</p>
+    <p><strong>the more you push, the worse it gets.</strong> and nobody is telling you this.</p>
+    <div class="problem-divider"></div>
+    <p class="problem-shift">the fix is the <em>opposite</em> of what you've been told — and once you understand it, everything changes.</p>
+  </div>
+</section>
+
+<section class="changes">
+  <div class="changes-inner">
+    <span class="label-sm" style="color: var(--muted);">what actually happens</span>
+    <h2>what <em>shifts</em> in 7 days</h2>
+    <p class="changes-sub">when you stop fighting your body and start supporting it</p>
+    <ul class="changes-items">
+      <li><span class="arr">→</span> you wake up and your face isn't puffy anymore</li>
+      <li><span class="arr">→</span> your stomach feels flat before you've even eaten</li>
+      <li><span class="arr">→</span> food stops making you bloated and heavy</li>
+      <li><span class="arr">→</span> your energy comes back without relying on caffeine</li>
+      <li><span class="arr">→</span> your body actually starts responding and changing</li>
+      <li><span class="arr">→</span> you finally understand what has been going on</li>
+    </ul>
+    <div class="changes-punch">"most girls feel noticeably different within the first 3 days. not weeks. days."</div>
+  </div>
+</section>
+
 <section class="inside">
-  <div class="container">
-    <div class="section-label">What's inside</div>
-    <h2>Four shifts that change everything.</h2>
-
-    <div class="modules">
-      <div class="module-row">
-        <div class="module-num">01</div>
-        <div class="module-content">
-          <h3>Stabilize Your Blood Sugar</h3>
-          <p>The Blood Sugar Shift — if your blood sugar is unstable, nothing else works. Learn why most women make this worse by eating less, and exactly what to do first.</p>
-        </div>
+  <div class="inside-inner">
+    <span class="label-sm" style="color: var(--muted);">what's inside</span>
+    <h2>four shifts that fix <em>everything.</em></h2>
+    <div class="inside-grid">
+      <div class="inside-card">
+        <span class="num">01 — Blood Sugar</span>
+        <h3>Stabilize First</h3>
+        <p>if your blood sugar is unstable, nothing else works. learn exactly why most women make this worse by eating less — and what to do instead.</p>
       </div>
-      <div class="module-row">
-        <div class="module-num">02</div>
-        <div class="module-content">
-          <h3>Calm the Stress Body</h3>
-          <p>The Stress Shift — your body cannot release what it doesn't feel safe enough to let go of. Even if you don't feel mentally stressed, your body might be under stress from overtraining, under eating, or poor sleep.</p>
-        </div>
+      <div class="inside-card">
+        <span class="num">02 — Stress Body</span>
+        <h3>Calm the Inflammation</h3>
+        <p>your body cannot release what it doesn't feel safe letting go of. even if you feel fine mentally, your body might be in crisis — here's why.</p>
       </div>
-      <div class="module-row">
-        <div class="module-num">03</div>
-        <div class="module-content">
-          <h3>Support Your Digestion</h3>
-          <p>The Gut Shift — bloating is not just about what you eat. It's about how stressed, rushed, and unsupported your digestion is. Simple changes, real results.</p>
-        </div>
+      <div class="inside-card">
+        <span class="num">03 — Digestion</span>
+        <h3>Fix the Bloating</h3>
+        <p>bloating isn't about what you eat — it's about how stressed your digestion is. fix this and the bloating goes away fast.</p>
       </div>
-      <div class="module-row">
-        <div class="module-num">04</div>
-        <div class="module-content">
-          <h3>Move Smarter</h3>
-          <p>The Movement Shift — for most women, it's doing too much that keeps them stuck. More workouts ≠ better results. Learn what movement actually supports your body.</p>
-        </div>
+      <div class="inside-card">
+        <span class="num">04 — Movement</span>
+        <h3>Stop Doing Too Much</h3>
+        <p>for most women, doing more is what's keeping them stuck. more workouts ≠ better results. learn what your body actually needs.</p>
       </div>
     </div>
-
-    <div style="margin-top:48px; padding:32px; border:1px solid rgba(255,255,255,0.1);">
-      <p style="font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--taupe); margin-bottom:20px;">Also included</p>
-      <p style="font-size:14px; font-weight:300; color:rgba(245,242,237,0.7); line-height:1.8;">
-        Hormone-supportive meal examples · Savory breakfast, lunch, and dinner ideas · Snack guide · Your 7-Day Balance Reset plan (days 1–3: regulate, days 4–7: support + build) · Body type guide (The Stressed Body, The Bloated Body, The Exhausted Body)
-      </p>
+    <div class="also-box">
+      <span class="lbl">also included</span>
+      <p>Hormone-supportive meal examples · Breakfast, lunch, dinner + snack guide · Your full 7-Day Balance Reset plan · 3 Body Type breakdowns — The Stressed Body, The Bloated Body, The Exhausted Body</p>
     </div>
   </div>
 </section>
 
-<!-- BODY TYPES -->
-<section class="body-types">
-  <div class="container-wide">
-    <div class="section-label">Find your starting point</div>
-    <h2>Which body type<br>are you right now?</h2>
-    <p class="sub">The guide shows you exactly where to start based on how you feel.</p>
-
-    <div class="types-grid">
-      <div class="type-card">
-        <p class="type-name">Type 01</p>
-        <h4>The Stressed Body</h4>
-        <ul>
-          <li>Always thinking about food</li>
-          <li>Overwhelmed or anxious</li>
-          <li>Holds weight in stomach</li>
-          <li>Focus: stress + cortisol</li>
-        </ul>
-      </div>
-      <div class="type-card">
-        <p class="type-name">Type 02</p>
-        <h4>The Bloated Body</h4>
-        <ul>
-          <li>Constant bloating</li>
-          <li>Feels puffy after eating</li>
-          <li>Digestion feels off</li>
-          <li>Focus: gut + digestion</li>
-        </ul>
-      </div>
-      <div class="type-card">
-        <p class="type-name">Type 03</p>
-        <h4>The Exhausted Body</h4>
-        <ul>
-          <li>Low energy always</li>
-          <li>Relies on caffeine</li>
-          <li>Crashes throughout the day</li>
-          <li>Focus: blood sugar + recovery</li>
-        </ul>
-      </div>
+<section class="price-section" id="get-access">
+  <span class="label-sm">get instant access now</span>
+  <h2>stop waiting to feel<br>like <em>yourself again.</em></h2>
+  <div class="price-box">
+    <div class="price-top">
+      <div class="price-num"><sup>$</sup>29</div>
+      <p class="price-sub">one-time · instant download · yours forever</p>
     </div>
+    <ul class="price-list">
+      <li>The Balance Method — all 4 shifts</li>
+      <li>3 Body Type breakdown — know exactly where to start</li>
+      <li>Hormone-supportive meal examples</li>
+      <li>Full 7-Day Balance Reset plan</li>
+      <li>Breakfast, lunch, dinner + snack guide</li>
+      <li>Instant digital access — start within minutes</li>
+    </ul>
+    <a href="https://buy.stripe.com/YOUR_LINK_HERE" class="btn-buy">yes — I'm ready to feel like myself →</a>
+    <p class="secure">🔒 secure checkout via stripe · instant access after purchase</p>
   </div>
 </section>
 
-<!-- PRICE / GET IT -->
-<section class="price-section" id="get-it">
-  <div class="container">
-    <h2>Your body is ready<br>to <em>respond.</em></h2>
-    <p class="tagline">Do less. Be consistent. Let your body settle.</p>
-
-    <div class="price-card">
-      <div class="price-badge">Instant Digital Access</div>
-      <p class="price-guide-name">The Shift — Full Guide</p>
-      <div class="price-amount"><sup>$</sup>29</div>
-      <p class="price-note">One-time payment · Instant download</p>
-
-      <ul class="price-includes">
-        <li>The Balance Method (all 4 shifts)</li>
-        <li>3 Body Type breakdown + where to start</li>
-        <li>Hormone-supportive meal examples</li>
-        <li>Breakfast, lunch, dinner + snack ideas</li>
-        <li>Your 7-Day Balance Reset plan</li>
-        <li>17-page digital guide (PDF)</li>
-      </ul>
-
-      <a href="https://buy.stripe.com/4gMeVc3XbduQbxD0Wve7m01" class="buy-btn">Yes — I'm Ready to Shift</a>
-
-      <p class="secure-note">Secure checkout via Stripe · Instant access after purchase</p>
+<section class="close-section">
+  <div class="close-inner">
+    <h2>every day you wait is another day<br><em>stuck in the same cycle.</em></h2>
+    <p>the bloating doesn't go away on its own. the puffiness doesn't just stop. your body is waiting for a signal that it's safe to let go — and this guide gives it that signal.</p>
+    <p><strong>$29. 7 days. and you finally understand what's actually been going on.</strong></p>
+    <div class="close-facts">
+      <div class="close-fact">
+        <span class="big">$29</span>
+        <span class="sm">one time</span>
+      </div>
+      <div class="close-fact">
+        <span class="big">7</span>
+        <span class="sm">day plan</span>
+      </div>
+      <div class="close-fact">
+        <span class="big">3</span>
+        <span class="sm">days to feel it</span>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- FINAL BANNER -->
-<section class="final-banner">
-  <div class="container">
-    <h2>"It's not lack of effort.<br>It's lack of direction."</h2>
-    <p>You've been trying. Now let's get your body actually working with you.</p>
-    <a href="https://buy.stripe.com/4gMeVc3XbduQbxD0Wve7m01" class="final-btn">Get The Shift — $29</a>
+    <a href="#get-access" class="btn-close">start today →</a>
+    <p class="final-note">instant access · secure checkout · one-time payment</p>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 · The Shift Digital Guide · All rights reserved</p>
+  <p>© balancedbyjenna · women's health coaching · the shift guide</p>
 </footer>
 
 </body>
